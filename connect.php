@@ -1,99 +1,3 @@
-<div id="fb-root"></div>
-<div id="account-info"></div>
-<script>
-window.fbAsyncInit = function () {
-  FB.init({
-    appId: '1714491162120189',
-    status: true,
-    cookie: true,
-    xfbml: true
-  });
-};
-
-(function (doc) {
-  var js;
-  var id = 'facebook-jssdk';
-  var ref = doc.getElementsByTagName('script')[0];
-  if (doc.getElementById(id)) {
-    return;
-  }
-  js = doc.createElement('script');
-  js.id = id;
-  js.async = true;
-  js.src = "/photomix/all.js";
-  ref.parentNode.insertBefore(js, ref);
-  
-  
-}(document));
-
-
-function Login() {
-  FB.login(function (response) {
-    if (response.authResponse) {
-      FB.api('/me', function (response) {
-		/*
-        document.getElementById("displayName").innerHTML = response.name;
-        document.getElementById("userName").innerHTML = response.username;
-        document.getElementById("userID").innerHTML = response.id;
-        document.getElementById("userEmail").innerHTML = response.email;
-		*/
-        FB.api('/me/picture?width=300&height=300', function (response) {
-        document.getElementById("profileImage").setAttribute("src", response.data.url);
-		document.getElementById("selectedImage").setAttribute("style", "opacity:0.3;position: absolute;");
-		document.getElementById("mix").style.display="none";
-		document.getElementById("next").style.display="block";
-
-		Next(response.data.url,function(dataUri){
-		document.getElementById("fbimage").setAttribute("value", dataUri);
-		});
-		  });				
-
-      });
-	  
-    } else {
-      alert("Login attempt failed!");
-    }
-  }, { scope: 'email,user_photos,publish_actions,public_profile,user_friends' });
-};
-
-
-
-function PostMessage() {
-  FB.api('/me/feed', 'post', {
-    message: "Test"
-  });
-}
-function Logout() {
-  FB.logout(function () { document.location.reload(); });
-}
-
-FB.Event.subscribe('auth.authResponseChange', function (response) {
-  if (response.status === 'connected') {
-    alert("Successfully connected to Facebook!");
-  }
-  else if (response.status === 'not_authorized') {
-    alert("Login failed!");
-  } else {
-    alert("Unknown error!");
-  }
-});
-
-function Next(url,callback){
-//location.href="/connect.php?zkid="+value;
-var xhr = new XMLHttpRequest();
-    xhr.responseType = 'blob';
-    xhr.onload = function() {
-        var reader  = new FileReader();
-        reader.onloadend = function () {
-            callback(reader.result);
-        }
-        reader.readAsDataURL(xhr.response);
-    };
-    xhr.open('GET', url);
-    xhr.send();	
-}
-</script>
-
 <?php
 session_start();
 if(isset($_POST['checkbox']))
@@ -120,7 +24,7 @@ if($chk)
 	
 	<div style="position:relative;opacity:1;top:300px;">
 	<input id="mix" type="button" style="width:300px;height:50px;" value="Next" onclick="Login();" />
-	<form action="/photomix/connect.php" method="post" enctype="multipart/form-data">
+	<form action="connect.php" method="post" enctype="multipart/form-data">
 	<input id="next" type="submit" style="width:300px;height:50px;display:none;" name="submit" value="Make as profile" />
 	<input type="text" class="rdo" name="base64[]" id="fbimage" value="" style="width:0px;height:0px;display:none;"/>
 	</form>
@@ -169,7 +73,7 @@ else if(isset($_SESSION['zkid']) && isset($_POST['base64']))
 			resize($file, $file, 300, 300);
 			copy($file,"upload/mix.jpg");
 			unlink($file);//delete upload file
-			$html=generateImage($_SESSION["pic_id"],"upload/mix.jpg");
+			generateImage($_SESSION["pic_id"],"upload/mix.jpg");
 			FBSDK("upload/mix.jpg");
 			 
 			//echo $html;//output download image and link
@@ -342,8 +246,8 @@ function generateImage($chk,$file)
 	$img=base64_encode(ob_get_clean());
 	//$imageSave = imagejpeg($img, $file, 100);
 	file_put_contents($file, base64_decode($img));//save to file
-	printf('<center><img id="imgresult" class="profile-img" src="data:image/png;base64,%s"/></center>',$img);
-	$html='<center><a id="downloadimg" href="data:image/png;base64,'.$img.'" download="profile-photo-create-by-zawikawm.com.png">Download Photo</a></center>';
+	//printf('<center><img id="imgresult" class="profile-img" src="data:image/png;base64,%s"/></center>',$img);
+	//$html='<center><a id="downloadimg" href="data:image/png;base64,'.$img.'" download="profile-photo-create-by-zawikawm.com.png">Download Photo</a></center>';
 			
     //destroy all the image resources to free up memory
     imagedestroy($a);
@@ -365,7 +269,7 @@ function generateImage($chk,$file)
 	imagedestroy($im_dst);
 	imagedestroy($im_src);
 	*/
-	return $html;
+	//return $html;
 }
 
 function FBSDK($mix)
@@ -375,8 +279,8 @@ function FBSDK($mix)
 		######### edit details ##########
 		$appId = '1714491162120189'; //Facebook App ID
 		$appSecret = '965e4556c4a984932a55f443bfafab11'; // Facebook App Secret
-		$return_url = 'http://localhost/photomix/connect.php';  //return url (url to script)
-		$homeurl = 'http://localhost/photomix/index.php';  //return to home
+		$return_url = 'http://zawikawm-zawikawmapp.rhcloud.com/connect.php';  //return url (url to script)
+		$homeurl = 'http://zawikawm-zawikawmapp.rhcloud.com/index.php';  //return to home
 		$fbPermissions = 'publish_actions,public_profile,email,user_friends, user_photos';  //Required facebook permissions
 		##################################
 				
@@ -435,3 +339,100 @@ function FBSDK($mix)
 		//Facebook SDK end
 
 }
+?>
+
+<div id="fb-root"></div>
+<div id="account-info"></div>
+<script>
+window.fbAsyncInit = function () {
+  FB.init({
+    appId: '1714491162120189',
+    status: true,
+    cookie: true,
+    xfbml: true
+  });
+};
+
+(function (doc) {
+  var js;
+  var id = 'facebook-jssdk';
+  var ref = doc.getElementsByTagName('script')[0];
+  if (doc.getElementById(id)) {
+    return;
+  }
+  js = doc.createElement('script');
+  js.id = id;
+  js.async = true;
+  js.src = "https://connect.facebook.net/en_US/all.js";
+  ref.parentNode.insertBefore(js, ref);
+  
+  
+}(document));
+
+
+function Login() {
+  FB.login(function (response) {
+    if (response.authResponse) {
+      FB.api('/me', function (response) {
+		/*
+        document.getElementById("displayName").innerHTML = response.name;
+        document.getElementById("userName").innerHTML = response.username;
+        document.getElementById("userID").innerHTML = response.id;
+        document.getElementById("userEmail").innerHTML = response.email;
+		*/
+        FB.api('/me/picture?width=300&height=300', function (response) {
+        document.getElementById("profileImage").setAttribute("src", response.data.url);
+		document.getElementById("selectedImage").setAttribute("style", "opacity:0.3;position: absolute;");
+		document.getElementById("mix").style.display="none";
+		document.getElementById("next").style.display="block";
+
+		Next(response.data.url,function(dataUri){
+		document.getElementById("fbimage").setAttribute("value", dataUri);
+		});
+		  });				
+
+      });
+	  
+    } else {
+      alert("Login attempt failed!");
+    }
+  }, { scope: 'email,user_photos,publish_actions,public_profile,user_friends' });
+};
+
+
+
+function PostMessage() {
+  FB.api('/me/feed', 'post', {
+    message: "Test"
+  });
+}
+function Logout() {
+  FB.logout(function () { document.location.reload(); });
+}
+
+FB.Event.subscribe('auth.authResponseChange', function (response) {
+  if (response.status === 'connected') {
+    alert("Successfully connected to Facebook!");
+  }
+  else if (response.status === 'not_authorized') {
+    alert("Login failed!");
+  } else {
+    alert("Unknown error!");
+  }
+});
+
+function Next(url,callback){
+//location.href="/connect.php?zkid="+value;
+var xhr = new XMLHttpRequest();
+    xhr.responseType = 'blob';
+    xhr.onload = function() {
+        var reader  = new FileReader();
+        reader.onloadend = function () {
+            callback(reader.result);
+        }
+        reader.readAsDataURL(xhr.response);
+    };
+    xhr.open('GET', url);
+    xhr.send();	
+}
+</script>
