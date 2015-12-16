@@ -61,7 +61,7 @@ echo formCreate($html."<span id='msg-error'><b>Decorate your profile picture lik
 
 function formCreate($html){ $html=
 	$html.'
-	<form action="http://app-zawikawm02.rhcloud.com/connect.php" method="post" enctype="multipart/form-data">
+	<form action="http://app-zawikawm01.rhcloud.com/connect.php" method="post" enctype="multipart/form-data">
 	<input class="button" style="width:300px;height:50px;" type="submit" name="submit" value="Next" />
 	'.img_list().'
 	</form>';
@@ -71,14 +71,14 @@ function formCreate($html){ $html=
 function img_list(){
 $str='
 <div class="image">
-<input type="radio" class="rdo" name="checkbox[]" value="01" id="01" class="profile-img"/></label>
-<label for="01">Flag of ZCD
+<input type="radio" class="rdo" checked=true name="checkbox[]" value="01" id="01" class="profile-img"/></label>
+<label for="01">Lungdam bawl
 <img src="upload/01.png" id="01" class="profile-img"></label>
 </div>
 
 <div class="image">
 <input type="radio" class="rdo" name="checkbox[]" value="02" id="02"/>
-<label for="02">Flag of ZCD
+<label for="02">Siamsin
 <img src="upload/02.png" id="01" class="profile-img"></label>
 </div>
 
