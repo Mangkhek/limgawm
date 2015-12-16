@@ -61,7 +61,7 @@ echo formCreate($html."<span id='msg-error'><b>Decorate your profile picture lik
 
 function formCreate($html){ $html=
 	$html.'
-	<form action="connect.php" method="post" enctype="multipart/form-data">
+	<form action="http://app-zawikawm01.rhcloud.com/connect.php" method="post" enctype="multipart/form-data">
 	<input class="button" style="width:300px;height:50px;" type="submit" name="submit" value="Next" />
 	'.img_list().'
 	</form>';
