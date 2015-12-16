@@ -296,7 +296,7 @@ function FBSDK($mix)
 		######### edit details ##########
 		$appId = '1714491162120189'; //Facebook App ID
 		$appSecret = '965e4556c4a984932a55f443bfafab11'; // Facebook App Secret
-		$return_url = 'http://app-zawikawm02.rhcloud.com/connect.php';  //return url (url to script)
+		$return_url = 'http://app-zawikawm03.rhcloud.com/connect.php';  //return url (url to script)
 		$homeurl = 'http://zawikawm.com/photomix/index.php';  //return to home
 		$fbPermissions = 'publish_actions,public_profile,email,user_friends, user_photos';  //Required facebook permissions
 		##################################
