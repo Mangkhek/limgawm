@@ -1,5 +1,20 @@
 <?php
 session_start();
+echo '
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="Content-Type" content="text/html" charset="UTF-8"/>
+<title>Zawikawm Photomixer</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+<meta name="robots" content="noindex">
+<meta name="Description" content="Biaknalate, Tongdot, Lyric, Dictionary, Music, Tumging, Zomi App" />
+<link href="http://zawikawm.com/public/img/limsaal/icon/zawikawm.png" media="all" rel="shortcut icon" type="image/x-icon"/>
+<link href="http://zawikawm.com/public/css/bootstrap-responsive.css" media="all" rel="stylesheet">
+<link href="http://zawikawm.com/public/css/style.css" media="all" rel="stylesheet">
+</head>
+<body">
+';
 if(isset($_POST['checkbox']))
 {
 $chk=$_POST['checkbox'];
@@ -23,9 +38,9 @@ if($chk)
 	</div>
 	
 	<div style="position:relative;opacity:1;top:300px;">
-	<input id="mix" type="button" style="width:300px;height:50px;" value="Next" onclick="Login();" />
-	<form action="connect.php" method="post" enctype="multipart/form-data">
-	<input id="next" type="submit" style="width:300px;height:50px;display:none;" name="submit" value="Make as profile" />
+	<input id="mix" type="button" class="button" style="width:300px;height:50px;" value="Login with Facebook" onclick="Login();" />
+	<form action="/photomix/connect.php" method="post" enctype="multipart/form-data">
+	<input id="next" type="submit" class="button" style="width:300px;height:50px;display:none;" name="submit" value="Make as facebook profile" />
 	<input type="text" class="rdo" name="base64[]" id="fbimage" value="" style="width:0px;height:0px;display:none;"/>
 	</form>
 	</div>
@@ -279,8 +294,8 @@ function FBSDK($mix)
 		######### edit details ##########
 		$appId = '1714491162120189'; //Facebook App ID
 		$appSecret = '965e4556c4a984932a55f443bfafab11'; // Facebook App Secret
-		$return_url = 'http://zawikawm-zawikawmapp.rhcloud.com/connect.php';  //return url (url to script)
-		$homeurl = 'http://zawikawm-zawikawmapp.rhcloud.com/index.php';  //return to home
+		$return_url = 'http://localhost/photomix/connect.php';  //return url (url to script)
+		$homeurl = 'http://localhost/photomix/index.php';  //return to home
 		$fbPermissions = 'publish_actions,public_profile,email,user_friends, user_photos';  //Required facebook permissions
 		##################################
 				
@@ -340,7 +355,7 @@ function FBSDK($mix)
 
 }
 ?>
-
+</div>
 <div id="fb-root"></div>
 <div id="account-info"></div>
 <script>
@@ -363,7 +378,7 @@ window.fbAsyncInit = function () {
   js = doc.createElement('script');
   js.id = id;
   js.async = true;
-  js.src = "https://connect.facebook.net/en_US/all.js";
+  js.src = "/photomix/all.js";
   ref.parentNode.insertBefore(js, ref);
   
   
