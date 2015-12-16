@@ -15,6 +15,7 @@ echo '
 </head>
 <body">
 ';
+
 if(isset($_POST['checkbox']))
 {
 $chk=$_POST['checkbox'];
