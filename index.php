@@ -71,14 +71,14 @@ function formCreate($html){ $html=
 function img_list(){
 $str='
 <div class="image">
-<input type="radio" class="rdo" name="checkbox[]" value="01" id="01" class="profile-img"/></label>
-<label for="01">Flag of ZCD
+<input type="radio" class="rdo" checked=true name="checkbox[]" value="01" id="01" class="profile-img"/></label>
+<label for="01">Zomi National Day
 <img src="upload/01.png" id="01" class="profile-img"></label>
 </div>
 
 <div class="image">
 <input type="radio" class="rdo" name="checkbox[]" value="02" id="02"/>
-<label for="02">Flag of ZCD
+<label for="02">Siamsin
 <img src="upload/02.png" id="01" class="profile-img"></label>
 </div>
 

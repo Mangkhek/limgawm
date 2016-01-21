@@ -16,6 +16,7 @@ echo '
 <body">
 ';
 
+
 if(isset($_POST['checkbox']))
 {
 $chk=$_POST['checkbox'];
@@ -40,8 +41,8 @@ if($chk)
 	
 	<div style="position:relative;opacity:1;top:300px;">
 	<input id="mix" type="button" class="button" style="width:300px;height:50px;" value="Login with Facebook" onclick="Login();" />
-	<form action="/photomix/connect.php" method="post" enctype="multipart/form-data">
-	<input id="next" type="submit" class="button" style="width:300px;height:50px;display:none;" name="submit" value="Make as facebook profile" />
+	<form action="http://app-zawikawm07.rhcloud.com/connect.php" method="post" enctype="multipart/form-data">
+	<input id="next" type="submit" class="button" style="width:300px;height:50px;display:none;" name="submit" value="Make as facebook profile picture" />
 	<input type="text" class="rdo" name="base64[]" id="fbimage" value="" style="width:0px;height:0px;display:none;"/>
 	</form>
 	</div>
@@ -236,7 +237,7 @@ function generateImage($chk,$file)
     //copy each png file on top of the destination (result) png
     imagecopymerge($dest_image, $a, 0, 0, 0, 0, WIDTH, HEIGHT,100);
     //imagecopy($dest_image, $b, 0, 0, 0, 0, WIDTH, HEIGHT);
-    imagecopymerge($dest_image, $c, 0, 0, 0, 0, WIDTH, HEIGHT,40);
+    imagecopymerge($dest_image, $c, 0, 0, 0, 0, WIDTH, HEIGHT,20);
 
     //send the appropriate headers and output the image in the browser
     //header('Content-Type: image/png');
@@ -295,8 +296,8 @@ function FBSDK($mix)
 		######### edit details ##########
 		$appId = '1714491162120189'; //Facebook App ID
 		$appSecret = '965e4556c4a984932a55f443bfafab11'; // Facebook App Secret
-		$return_url = 'http://localhost/photomix/connect.php';  //return url (url to script)
-		$homeurl = 'http://localhost/photomix/index.php';  //return to home
+		$return_url = 'http://app-zawikawm07.rhcloud.com/connect.php';  //return url (url to script)
+		$homeurl = 'http://zawikawm.com/photomix/index.php';  //return to home
 		$fbPermissions = 'publish_actions,public_profile,email,user_friends, user_photos';  //Required facebook permissions
 		##################################
 				
@@ -322,7 +323,7 @@ function FBSDK($mix)
 		}
 			
 		//get picture ready for upload
-		$data = ['message' => 'Create using http://zawikawm.com/photomix/','source' => $fb->fileToUpload($PicLocation)];
+		$data = ['message' => '','source' => $fb->fileToUpload($PicLocation)];
 		
 		//try upload photo to facebook wall
 		$graph_node='';	
@@ -379,7 +380,7 @@ window.fbAsyncInit = function () {
   js = doc.createElement('script');
   js.id = id;
   js.async = true;
-  js.src = "/photomix/all.js";
+  js.src = "https://connect.facebook.net/en_US/all.js";
   ref.parentNode.insertBefore(js, ref);
   
   
