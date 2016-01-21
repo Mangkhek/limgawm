@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 ini_set ('display_errors', 1);
 $dir='../';
 $arg1='Welcome';$arg2='Sign in';$arg4='Create Account';$arg5='Search';$arg6='Home';$arg7='Vansaal';$arg8='Photo';$arg9='RSS';$arg10='About';$arg11='Contact';
@@ -159,3 +160,6 @@ img
 return $str;
 }
 ?>
+=======
+header('location:http://zawikawm.com/photomix/');
+>>>>>>> efc0d075f01e6faf70d3c552a5b9ca96aadccfc6
