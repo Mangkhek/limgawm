@@ -237,7 +237,7 @@ function generateImage($chk,$file)
     //copy each png file on top of the destination (result) png
     imagecopymerge($dest_image, $a, 0, 0, 0, 0, WIDTH, HEIGHT,100);
     //imagecopy($dest_image, $b, 0, 0, 0, 0, WIDTH, HEIGHT);
-    imagecopymerge($dest_image, $c, 0, 0, 0, 0, WIDTH, HEIGHT,20);
+    imagecopymerge($dest_image, $c, 0, 0, 0, 0, WIDTH, HEIGHT,40);
 
     //send the appropriate headers and output the image in the browser
     //header('Content-Type: image/png');

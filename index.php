@@ -1,6 +1,14 @@
 <?php
 <<<<<<< HEAD
 ini_set ('display_errors', 1);
+if (isset($APPLICATION_TITLE))
+{
+
+}
+else
+{
+	define ('APPLICATION_TITLE','Zawikawm Application');
+}
 $dir='../';
 $arg1='Welcome';$arg2='Sign in';$arg4='Create Account';$arg5='Search';$arg6='Home';$arg7='Vansaal';$arg8='Photo';$arg9='RSS';$arg10='About';$arg11='Contact';
 $tpl='
@@ -73,19 +81,19 @@ function img_list(){
 $str='
 <div class="image">
 <input type="radio" class="rdo" checked=true name="checkbox[]" value="01" id="01" class="profile-img"/></label>
-<label for="01">Zomi National Day
+<label for="01">National Day
 <img src="upload/01.png" id="01" class="profile-img"></label>
 </div>
 
 <div class="image">
 <input type="radio" class="rdo" name="checkbox[]" value="02" id="02"/>
-<label for="02">Siamsin
+<label for="02">National Day
 <img src="upload/02.png" id="01" class="profile-img"></label>
 </div>
 
 <div class="image">
 <input type="radio" class="rdo" name="checkbox[]" value="03" id="03"/>
-<label for="03">Flag of ZCD(ArtWork)
+<label for="03">Siamsin
 <img src="upload/03.png" id="04" class="profile-img"></label>
 </div>
 
