@@ -97,6 +97,12 @@ $str='
 <img src="upload/03.png" id="04" class="profile-img"></label>
 </div>
 
+<div class="image">
+<input type="radio" class="rdo" name="checkbox[]" value="04" id="04"/>
+<label for="04">National Day
+<img src="upload/04.png" id="04" class="profile-img"></label>
+</div>
+
 </div>
 
 <style type="text/css">
