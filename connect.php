@@ -87,7 +87,7 @@ else if(isset($_SESSION['zkid']) && isset($_POST['base64']))
 			//file_put_contents("upload/upload.jpg", $data);
 			//echo "Stored in: " . "upload/upload.jpg";
 			 
-			resize($file, $file, 300, 300);
+			resize($file, $file, 320, 320);
 			copy($file,"upload/mix.jpg");
 			unlink($file);//delete upload file
 			generateImage($_SESSION["pic_id"],"upload/mix.jpg");
