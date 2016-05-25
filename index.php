@@ -81,26 +81,50 @@ function img_list(){
 $str='
 <div class="image">
 <input type="radio" class="rdo" checked=true name="checkbox[]" value="01" id="01" class="profile-img"/></label>
-<label for="01">National Day
+<label for="01">Arsenal
 <img src="upload/01.png" id="01" class="profile-img"></label>
 </div>
 
 <div class="image">
 <input type="radio" class="rdo" name="checkbox[]" value="02" id="02"/>
-<label for="02">National Day
-<img src="upload/02.png" id="01" class="profile-img"></label>
+<label for="02">AVFC
+<img src="upload/02.png" id="02" class="profile-img"></label>
 </div>
 
 <div class="image">
 <input type="radio" class="rdo" name="checkbox[]" value="03" id="03"/>
-<label for="03">National Day
+<label for="03">Chelsea FC
 <img src="upload/03.png" id="03" class="profile-img"></label>
 </div>
 
 <div class="image">
 <input type="radio" class="rdo" name="checkbox[]" value="04" id="04"/>
-<label for="04">National Day
+<label for="04">Manchester City FC
 <img src="upload/04.png" id="04" class="profile-img"></label>
+</div>
+
+<div class="image">
+<input type="radio" class="rdo" name="checkbox[]" value="05" id="05"/>
+<label for="05">Manchester United
+<img src="upload/05.png" id="05" class="profile-img"></label>
+</div>
+
+<div class="image">
+<input type="radio" class="rdo" name="checkbox[]" value="06" id="06"/>
+<label for="06">Swansea City
+<img src="upload/06.png" id="06" class="profile-img"></label>
+</div>
+
+<div class="image">
+<input type="radio" class="rdo" name="checkbox[]" value="07" id="07"/>
+<label for="07">Tottenham
+<img src="upload/07.png" id="07" class="profile-img"></label>
+</div>
+
+<div class="image">
+<input type="radio" class="rdo" name="checkbox[]" value="08" id="08"/>
+<label for="08">Albion
+<img src="upload/08.png" id="08" class="profile-img"></label>
 </div>
 
 </div>
