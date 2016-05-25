@@ -31,18 +31,18 @@ if($chk)
 	$_SESSION["pic_id"] = $chk; // Picture ID from Index page
 	$_SESSION["zkid"]=uniqid();
 	echo '
-	<div style="width: 320px;position: relative;margin-left:auto;margin-right:auto;">
-	<div class="option_img" style="width: 320px;position: absolute;">
-	<img style="max-width:320px;max-height:320px;" id="profileImage"/>
+	<div style="width: 300px;position: relative;margin-left:auto;margin-right:auto;">
+	<div class="option_img" style="width: 300px;position: absolute;">
+	<img style="max-width:300px;max-height:300px;" id="profileImage"/>
 	</div>
 	<div class="option_img" style="position: absolute;">
-	<img style="width:320px;height:320px;" id="selectedImage" src="upload/'.$chk.'.png" />
+	<img style="width:300px;height:300px;" id="selectedImage" src="upload/'.$chk.'.png" />
 	</div>
 	
-	<div style="position:relative;opacity:1;top:320px;">
-	<input id="mix" type="button" class="button" style="width:320px;height:50px;" value="Login with Facebook" onclick="Login();" />
+	<div style="position:relative;opacity:1;top:300px;">
+	<input id="mix" type="button" class="button" style="width:300px;height:50px;" value="Login with Facebook" onclick="Login();" />
 	<form action="http://app-zawikawm07.rhcloud.com/connect.php" method="post" enctype="multipart/form-data">
-	<input id="next" type="submit" class="button" style="width:320px;height:50px;display:none;" name="submit" value="Make as facebook profile picture" />
+	<input id="next" type="submit" class="button" style="width:300px;height:50px;display:none;" name="submit" value="Make as facebook profile picture" />
 	<input type="text" class="rdo" name="base64[]" id="fbimage" value="" style="width:0px;height:0px;display:none;"/>
 	</form>
 	</div>
@@ -211,8 +211,8 @@ function generateImage($chk,$file)
 {
 
 //define the width and height of our images
-    define("WIDTH", 300);
-    define("HEIGHT", 300);
+    define("WIDTH", 320);
+    define("HEIGHT", 320);
     $dest_image = imagecreatetruecolor(WIDTH, HEIGHT);
     //make sure the transparency information is saved
     imagesavealpha($dest_image, false);
@@ -399,7 +399,7 @@ function Login() {
 		*/
         FB.api('/me/picture?width=300&height=300', function (response) {
         document.getElementById("profileImage").setAttribute("src", response.data.url);
-		document.getElementById("selectedImage").setAttribute("style", "opacity:0.3;position: absolute;");
+		document.getElementById("selectedImage").setAttribute("style", "width:300px;height:300px;opacity:0.3;position: absolute;");
 		document.getElementById("mix").style.display="none";
 		document.getElementById("next").style.display="block";
 
