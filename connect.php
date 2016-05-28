@@ -233,11 +233,14 @@ function generateImage($chk,$file)
     $a = imagecreatefromstring(file_get_contents($file));
 	//$b = imagecreatefromstring(file_get_contents('5.png'));
     $c = imagecreatefromstring(file_get_contents('upload/'.$chk.'.png'));
+	
+	imagealphablending($dest_image, true);
+	imagesavealpha($dest_image, true);
 		
     //copy each png file on top of the destination (result) png
     imagecopymerge($dest_image, $a, 0, 0, 0, 0, WIDTH, HEIGHT,100);
-    //imagecopy($dest_image, $b, 0, 0, 0, 0, WIDTH, HEIGHT);
-    imagecopymerge($dest_image, $c, 0, 0, 0, 0, WIDTH, HEIGHT,40);
+    imagecopy($dest_image, $c, 0, 0, 0, 0, WIDTH, HEIGHT);
+    //imagecopymerge($dest_image, $c, 0, 0, 0, 0, WIDTH, HEIGHT,40);
 
     //send the appropriate headers and output the image in the browser
     //header('Content-Type: image/png');
@@ -252,11 +255,11 @@ function generateImage($chk,$file)
 	//Allocate a color tor the text
 	$white=imagecolorallocate($dest_image,255,255,255);
 	//Set Path to font file
-	//$font_path='comic.ttf';
+	$font_path='arial.ttf';
 	//Set Text to be print on image
-	//$text='Hello';
+	$text='http://zawikawm.com/photomix/';
 	//Print text on image (font-size;rotate;left;top)
-	//imagettftext($dest_image,20,0,10,280,$white,$font_path,$text);
+	imagettftext($dest_image,12,0,10,30,$white,$font_path,$text);
 			
 	ob_start();
 	imagepng($dest_image);
