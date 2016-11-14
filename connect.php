@@ -259,7 +259,7 @@ function generateImage($chk,$file)
 	//Set Text to be print on image
 	$text='http://zawikawm.com/photomix/';
 	//Print text on image (font-size;rotate;left;top)
-	imagettftext($dest_image,12,0,10,30,$white,$font_path,$text);
+	imagettftext($dest_image,12,0,10,50,$white,$font_path,$text);
 			
 	ob_start();
 	imagepng($dest_image);
