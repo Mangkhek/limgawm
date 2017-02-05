@@ -350,7 +350,8 @@ function FBSDK($mix)
 		if(isset($graph_node["id"]) && is_numeric($graph_node["id"]))
 		{	
 			//href="http://www.facebook.com/profile.php?preview_cover='.$graph_node["id"].'"
-			echo "<script>window.top.location.href='http://www.facebook.com/photo.php?fbid=".$graph_node["id"]."&type=3&makeprofile=1&makeuserprofile=1';</script>";
+			$profile_id = get_string_between($graph_node["id"], "profile_id=", "&");
+			echo "<script>window.top.location.href='http://www.facebook.com/photo.php?fbid=".$graph_node["id"]."&type=3&makeprofile=1&profile_id=".$profile_id."&pp_source=photo_view';</script>";
 		}
 		else
 		{
@@ -358,6 +359,14 @@ function FBSDK($mix)
 		}		
 		//Facebook SDK end
 
+}
+function get_string_between($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
 }
 ?>
 </div>
@@ -402,7 +411,7 @@ function Login() {
 		*/
         FB.api('/me/picture?width=300&height=300', function (response) {
         document.getElementById("profileImage").setAttribute("src", response.data.url);
-		document.getElementById("selectedImage").setAttribute("style", "width:300px;height:300px;opacity:0.3;position: absolute;");
+		document.getElementById("selectedImage").setAttribute("style", "width:300px;height:300px;opacity:1;position: absolute;");
 		document.getElementById("mix").style.display="none";
 		document.getElementById("next").style.display="block";
 
