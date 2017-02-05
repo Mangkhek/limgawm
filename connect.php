@@ -259,7 +259,7 @@ function generateImage($chk,$file)
 	//Set Text to be print on image
 	$text='http://zawikawm.com/photomix/';
 	//Print text on image (font-size;rotate;left;top)
-	imagettftext($dest_image,12,0,10,50,$white,$font_path,$text);
+	imagettftext($dest_image,12,0,10,40,$white,$font_path,$text);
 			
 	ob_start();
 	imagepng($dest_image);
@@ -350,7 +350,7 @@ function FBSDK($mix)
 		if(isset($graph_node["id"]) && is_numeric($graph_node["id"]))
 		{	
 			//href="http://www.facebook.com/profile.php?preview_cover='.$graph_node["id"].'"
-			echo "<script>window.top.location.href='http://www.facebook.com/photo.php?fbid=".$graph_node["id"]."&type=1&makeprofile=1&makeuserprofile=1';</script>";
+			echo "<script>window.top.location.href='http://www.facebook.com/photo.php?fbid=".$graph_node["id"]."&type=3&makeprofile=1&makeuserprofile=1';</script>";
 		}
 		else
 		{
