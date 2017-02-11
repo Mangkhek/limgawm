@@ -44,6 +44,7 @@ if($chk)
 	<form action="http://app-zawikawm07.rhcloud.com/connect.php" method="post" enctype="multipart/form-data">
 	<input id="next" type="submit" class="button" style="width:300px;height:50px;display:none;" name="submit" value="Make as facebook profile picture" />
 	<input type="text" class="rdo" name="base64[]" id="fbimage" value="" style="width:0px;height:0px;display:none;"/>
+	<input type="text" name="message" value="Try http://zawikawm.com/photomix/" style="width:300px;height:50px;"/>
 	</form>
 	</div>
 	</div>';	
@@ -52,6 +53,7 @@ if($chk)
 else if(isset($_SESSION['zkid']) && isset($_POST['base64']))
 {
 	$chk=$_POST['base64'];
+	$imgdesp=$_POST['message'];
 	if($chk)
 	{
 		for($i=0;$i<sizeof($chk);$i++)
@@ -91,7 +93,7 @@ else if(isset($_SESSION['zkid']) && isset($_POST['base64']))
 			copy($file,"upload/mix.jpg");
 			unlink($file);//delete upload file
 			generateImage($_SESSION["pic_id"],"upload/mix.jpg");
-			FBSDK("upload/mix.jpg");
+			FBSDK("upload/mix.jpg",$imgdesp);
 			 
 			//echo $html;//output download image and link
 		}
@@ -106,7 +108,7 @@ else
 {
 	if(isset($_REQUEST['code']))
 	{
-	FBSDK("upload/mix.jpg");
+	FBSDK("upload/mix.jpg",$imgdesp);
 	}
 	else
 	{	
@@ -259,7 +261,7 @@ function generateImage($chk,$file)
 	//Set Text to be print on image
 	$text='http://zawikawm.com/photomix/';
 	//Print text on image (font-size;rotate;left;top)
-	imagettftext($dest_image,12,0,10,30,$white,$font_path,$text);
+	imagettftext($dest_image,12,0,10,10,$white,$font_path,$text);
 			
 	ob_start();
 	imagepng($dest_image);
@@ -292,7 +294,7 @@ function generateImage($chk,$file)
 	//return $html;
 }
 
-function FBSDK($mix)
+function FBSDK($mix,$imgdesp)
 {
 //Facebook SDK Begin
 		require_once('Facebook/autoload.php' );//include facebook api library
@@ -326,7 +328,7 @@ function FBSDK($mix)
 		}
 			
 		//get picture ready for upload
-		$data = ['message' => '','source' => $fb->fileToUpload($PicLocation)];
+		$data = ['message' => $imgdesp,'source' => $fb->fileToUpload($PicLocation)];
 		
 		//try upload photo to facebook wall
 		$graph_node='';	
@@ -350,7 +352,8 @@ function FBSDK($mix)
 		if(isset($graph_node["id"]) && is_numeric($graph_node["id"]))
 		{	
 			//href="http://www.facebook.com/profile.php?preview_cover='.$graph_node["id"].'"
-			echo "<script>window.top.location.href='http://www.facebook.com/photo.php?fbid=".$graph_node["id"]."&type=1&makeprofile=1&makeuserprofile=1';</script>";
+			$profile_id = get_string_between($graph_node["id"], "profile_id=", "&");
+			echo "<script>window.top.location.href='http://www.facebook.com/photo.php?fbid=".$graph_node["id"]."&type=3&makeprofile=1&profile_id=".$profile_id."&pp_source=photo_view';</script>";
 		}
 		else
 		{
@@ -358,6 +361,14 @@ function FBSDK($mix)
 		}		
 		//Facebook SDK end
 
+}
+function get_string_between($string, $start, $end){
+    $string = ' ' . $string;
+    $ini = strpos($string, $start);
+    if ($ini == 0) return '';
+    $ini += strlen($start);
+    $len = strpos($string, $end, $ini) - $ini;
+    return substr($string, $ini, $len);
 }
 ?>
 </div>
@@ -402,7 +413,7 @@ function Login() {
 		*/
         FB.api('/me/picture?width=300&height=300', function (response) {
         document.getElementById("profileImage").setAttribute("src", response.data.url);
-		document.getElementById("selectedImage").setAttribute("style", "width:300px;height:300px;opacity:0.3;position: absolute;");
+		document.getElementById("selectedImage").setAttribute("style", "width:300px;height:300px;opacity:1;position: absolute;");
 		document.getElementById("mix").style.display="none";
 		document.getElementById("next").style.display="block";
 
