@@ -127,6 +127,12 @@ $str='
 <img src="upload/08.png" id="08" class="profile-img"></label>
 </div>
 
+<div class="image">
+<input type="radio" class="rdo" name="checkbox[]" value="09" id="09"/>
+<label for="09">Albion
+<img src="upload/09.png" id="09" class="profile-img"></label>
+</div>
+
 </div>
 
 <style type="text/css">
