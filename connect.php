@@ -112,7 +112,8 @@ else
 	}
 	else
 	{	
-	echo "Somthing worng for parameter";
+	//echo "Somthing worng for parameter";
+         header('Location:http://zawikawm.com/photomix/');
 	}
 }
 
@@ -261,7 +262,7 @@ function generateImage($chk,$file)
 	//Set Text to be print on image
 	$text='http://zawikawm.com/photomix/';
 	//Print text on image (font-size;rotate;left;top)
-	imagettftext($dest_image,12,0,10,10,$white,$font_path,$text);
+	imagettftext($dest_image,12,0,10,20,$white,$font_path,$text);
 			
 	ob_start();
 	imagepng($dest_image);
@@ -328,7 +329,7 @@ function FBSDK($mix,$imgdesp)
 		}
 			
 		//get picture ready for upload
-		$data = ['message' => $imgdesp,'source' => $fb->fileToUpload($PicLocation)];
+		$data = ['message' => 'Try http://zawikawm.com/photomix/','source' => $fb->fileToUpload($PicLocation)];
 		
 		//try upload photo to facebook wall
 		$graph_node='';	
